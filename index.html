@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selecciona un Número</title>
+    <title>Rifa de Números</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,7 +36,7 @@
 </head>
 <body>
 
-    <h2>Selecciona un número:</h2>
+    <h2>Rifa de Números (1-180)</h2>
     <div id="number-container" class="container"></div>
     <h3>Números seleccionados:</h3>
     <div id="selected-numbers" class="selected-numbers"></div>
@@ -44,7 +44,7 @@
     <script>
         const container = document.getElementById("number-container");
         const selectedNumbersContainer = document.getElementById("selected-numbers");
-        const totalNumbers = 180; // Puedes cambiar el rango de números
+        const totalNumbers = 180; // Se ajusta la rifa a 180 números
 
         // Recuperar números desde localStorage o inicializar con valores del 1 al totalNumbers
         let selectedNumbers = JSON.parse(localStorage.getItem("selectedNumbers")) || [];
