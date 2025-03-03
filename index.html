@@ -28,16 +28,23 @@
         .number:hover {
             background: darkblue;
         }
+        .selected-numbers {
+            margin-top: 20px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
 
     <h2>Selecciona un número:</h2>
     <div id="number-container" class="container"></div>
+    <h3>Números seleccionados:</h3>
+    <div id="selected-numbers" class="selected-numbers"></div>
 
     <script>
         const container = document.getElementById("number-container");
-        const totalNumbers = 180; // Puedes cambiar el rango de números
+        const selectedNumbersContainer = document.getElementById("selected-numbers");
+        const totalNumbers = 10; // Puedes cambiar el rango de números
 
         // Recuperar números desde localStorage o inicializar con valores del 1 al totalNumbers
         let selectedNumbers = JSON.parse(localStorage.getItem("selectedNumbers")) || [];
@@ -52,6 +59,7 @@
                 button.onclick = () => selectNumber(num);
                 container.appendChild(button);
             });
+            renderSelectedNumbers();
         }
 
         function selectNumber(num) {
@@ -59,6 +67,10 @@
             localStorage.setItem("selectedNumbers", JSON.stringify(selectedNumbers)); // Guardar en localStorage
             availableNumbers = availableNumbers.filter(n => n !== num); // Eliminar el número de la lista disponible
             renderNumbers(); // Volver a renderizar la lista
+        }
+
+        function renderSelectedNumbers() {
+            selectedNumbersContainer.innerHTML = selectedNumbers.length > 0 ? selectedNumbers.join(", ") : "Ninguno";
         }
 
         // Renderizar números al cargar la página
