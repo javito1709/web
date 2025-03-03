@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numeración en Tiempo Real</title>
+    <title>Selecciona un Número</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,24 +37,27 @@
 
     <script>
         const container = document.getElementById("number-container");
+        const totalNumbers = 180; // Puedes cambiar el rango de números
 
-        // Recuperar números desde localStorage o inicializar con valores del 1 al 10
-        let numbers = JSON.parse(localStorage.getItem("numbers")) || Array.from({ length: 10 }, (_, i) => i + 1);
+        // Recuperar números desde localStorage o inicializar con valores del 1 al totalNumbers
+        let selectedNumbers = JSON.parse(localStorage.getItem("selectedNumbers")) || [];
+        let availableNumbers = Array.from({ length: totalNumbers }, (_, i) => i + 1).filter(n => !selectedNumbers.includes(n));
 
         function renderNumbers() {
             container.innerHTML = ""; // Limpiar la lista antes de actualizar
-            numbers.forEach(num => {
+            availableNumbers.forEach(num => {
                 const button = document.createElement("button");
                 button.textContent = num;
                 button.classList.add("number");
-                button.onclick = () => removeNumber(num);
+                button.onclick = () => selectNumber(num);
                 container.appendChild(button);
             });
         }
 
-        function removeNumber(num) {
-            numbers = numbers.filter(n => n !== num);
-            localStorage.setItem("numbers", JSON.stringify(numbers)); // Guardar en localStorage
+        function selectNumber(num) {
+            selectedNumbers.push(num);
+            localStorage.setItem("selectedNumbers", JSON.stringify(selectedNumbers)); // Guardar en localStorage
+            availableNumbers = availableNumbers.filter(n => n !== num); // Eliminar el número de la lista disponible
             renderNumbers(); // Volver a renderizar la lista
         }
 
