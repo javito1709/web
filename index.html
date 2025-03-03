@@ -1,22 +1,4 @@
 <!DOCTYPE html>
-<html>
-
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HTML Example</title>
-
-  <style>
-    .styled {
-    font-family: cursive, sans-serif;
-}
-  </style>
-
-  
-</head>
-<body>
-  <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -56,8 +38,8 @@
     <script>
         const container = document.getElementById("number-container");
 
-        // Generamos una lista de números del 1 al 10
-        let numbers = Array.from({ length: 120 }, (_, i) => i + 1);
+        // Recuperar números desde localStorage o inicializar con valores del 1 al 10
+        let numbers = JSON.parse(localStorage.getItem("numbers")) || Array.from({ length: 10 }, (_, i) => i + 1);
 
         function renderNumbers() {
             container.innerHTML = ""; // Limpiar la lista antes de actualizar
@@ -72,6 +54,7 @@
 
         function removeNumber(num) {
             numbers = numbers.filter(n => n !== num);
+            localStorage.setItem("numbers", JSON.stringify(numbers)); // Guardar en localStorage
             renderNumbers(); // Volver a renderizar la lista
         }
 
@@ -79,13 +62,5 @@
         renderNumbers();
     </script>
 
-</body>
-</html>
-
-  <script>
-    document.getElementById('button').onclick = function () {
-	alert('Heyyyy you clicked the button!');
-}
-  </script>
 </body>
 </html>
