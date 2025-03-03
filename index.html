@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML Example</title>
+
+  <style>
+    .styled {
+    font-family: cursive, sans-serif;
+}
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeración en Tiempo Real</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .number {
+            padding: 10px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .number:hover {
+            background: darkblue;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Selecciona un número:</h2>
+    <div id="number-container" class="container"></div>
+
+    <script>
+        const container = document.getElementById("number-container");
+
+        // Generamos una lista de números del 1 al 10
+        let numbers = Array.from({ length: 120 }, (_, i) => i + 1);
+
+        function renderNumbers() {
+            container.innerHTML = ""; // Limpiar la lista antes de actualizar
+            numbers.forEach(num => {
+                const button = document.createElement("button");
+                button.textContent = num;
+                button.classList.add("number");
+                button.onclick = () => removeNumber(num);
+                container.appendChild(button);
+            });
+        }
+
+        function removeNumber(num) {
+            numbers = numbers.filter(n => n !== num);
+            renderNumbers(); // Volver a renderizar la lista
+        }
+
+        // Renderizar números al cargar la página
+        renderNumbers();
+    </script>
+
+</body>
+</html>
+
+  <script>
+    document.getElementById('button').onclick = function () {
+	alert('Heyyyy you clicked the button!');
+}
+  </script>
+</body>
+</html>
